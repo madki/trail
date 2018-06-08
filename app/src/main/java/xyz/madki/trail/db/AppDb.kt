@@ -2,15 +2,15 @@ package xyz.madki.trail.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import xyz.madki.trail.models.Todo
+import xyz.madki.trail.models.News
 
 @Database(
         entities = [
-            Todo::class
+            News::class
         ],
         version = 1,
         exportSchema = false
 )
 abstract class AppDb: RoomDatabase() {
-    abstract fun todoDao(): TodoDao
+    abstract fun newsDao(): NewsDao
 }
