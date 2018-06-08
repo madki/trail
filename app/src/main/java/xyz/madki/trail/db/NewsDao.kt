@@ -9,7 +9,7 @@ abstract class NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(vararg news: News)
 
-    @Query("SELECT * FROM news ORDER BY publishedAt")
+    @Query("SELECT * FROM news ORDER BY publishedAt DESC")
     abstract fun load(): Flowable<List<News>>
 
     @Transaction

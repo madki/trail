@@ -43,7 +43,7 @@ data class Image(
     val resolutions: List<Resolution>
 ) {
     fun getScaledImage(): String {
-        return resolutions.first { it.tag == "fit-width-640" }.url
+        return resolutions.firstOrNull { it.tag == "fit-width-640" }?.url ?: url
     }
 }
 

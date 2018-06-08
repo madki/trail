@@ -6,6 +6,7 @@ import android.view.MenuItem
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import xyz.madki.trail.R
+import xyz.madki.trail.ui.newslist.NewsListFragment
 
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -14,6 +15,15 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        val fragmentPopped = supportFragmentManager
+                .popBackStackImmediate("NEWS_LIST_FRAGMENT", 0)
+        if (!fragmentPopped && supportFragmentManager.findFragmentByTag("NEWS_LIST_FRAGMENT") == null) {
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.fragment, NewsListFragment())
+                    .addToBackStack("NEWS_LIST_FRAGMENT")
+                    .commit()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_news_list.*
+import timber.log.Timber
 import xyz.madki.trail.R
+import xyz.madki.trail.ui.newsdetail.NewsDetailFragment
 import javax.inject.Inject
 
 /**
@@ -30,6 +32,11 @@ class NewsListFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         val adapter = NewsListAdapter {
             // TODO open next page
+            Timber.d("Clicked news")
+            activity!!.supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment, NewsDetailFragment.newInstance(it))
+                    .addToBackStack("NEWS_DETAIL_FRAGMENT")
+                    .commit()
         }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(view.context)
